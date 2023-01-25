@@ -11,7 +11,7 @@ import {Modelo} from '../modelos/modelo.js';
 
 class Controlador{
     constructor(){
-        window.onload = this.iniciar.bind(this)
+        $(window).on('load',this.iniciar.bind(this))
     }
     /**
      * Inicia el modelo y las vistas
@@ -19,12 +19,12 @@ class Controlador{
     iniciar(){
          
         //Primero creamos el modelo porque tarda en crear
-         this.modelo = new Modelo()
-
-        this.divVistaInicio = document.getElementById('vistaInicio')
-        this.divVistaAlta = document.getElementById('vistaAlta')
-        this.divVistaConsulta= document.getElementById('vistaConsulta')
-        this.divVistaModificar = document.getElementById('vistaModificar')
+        this.modelo = new Modelo()
+      
+        this.divVistaInicio = $('#vistaInicio')
+        this.divVistaAlta = $('#vistaAlta')
+        this.divVistaConsulta= $('#vistaConsulta')
+        this.divVistaModificar = $('#vistaModificar')
 
         this.vistaInicio = new VistaInicio(this.divVistaInicio, this);
         this.vistaAlta = new VistaAlta(this.divVistaAlta, this)

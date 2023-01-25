@@ -19,69 +19,69 @@ export class VistaConsulta extends Vista{
     pintar(dato){
        
         this.borrarIngresos()
-                let contenedor = document.createElement("div")
-                this.div.appendChild(contenedor)
-                contenedor.setAttribute('id', "contenedor")
+                let contenedor = $("<div></div>")
+                this.div.append(contenedor)
+                contenedor.attr('id', "contenedor")
                 
-                let titulo = document.createElement('h2')
-                contenedor.appendChild(titulo)
-                titulo.textContent = dato.nombre
+                let titulo = $("<h2></h2>")
+                contenedor.append(titulo)
+                titulo.text(dato.nombre)
 
-                let imagen = document.createElement('div')
-                imagen.setAttribute('id', "fotoConsulta")
-                contenedor.appendChild(imagen)
+                let imagen = $("<div></div>")
+                imagen.attr('id', "fotoConsulta")
+                contenedor.append(imagen)
 
-                let img = document.createElement('img')
-                imagen.appendChild(img)
+                let img = $("<img></img>")
+                imagen.append(img)
              
-                img.setAttribute('width', '200px')
-                img.setAttribute('height', '200px')
+                img.width('200px')
+                img.height('200px')
                 if (dato.file){
-                    img.setAttribute('src', dato.file)
+                    img.attr('src', dato.file)
                 }
                 else{
                     let sinfoto="assets/img/nophoto.gif"
-                    img.setAttribute('src', sinfoto)
+                    img.attr('src', sinfoto)
                 }
-                let parrafo = document.createElement('p')
-                contenedor.appendChild(parrafo)
-                parrafo.textContent = "Descripcion: "+dato.descripcion
+                let parrafo = $('<p></p>')
+                contenedor.append(parrafo)
+                parrafo.text("Descripcion: "+ dato.descripcion)
 
-                let fecha = document.createElement('p')
-                contenedor.appendChild(fecha)
-                fecha.textContent = "Fecha de lanzamiento: " + dato.fecha
+                let fecha = $('<p></p>')
+                contenedor.append(fecha)
+                fecha.text("Fecha de lanzamiento: " + dato.fecha) 
 				
-				let edadRecomendada = document.createElement('p')
-                contenedor.appendChild(edadRecomendada)
-                edadRecomendada.textContent = "Edad Recomendada" + dato.edad
+				let edadRecomendada = $('<p></p>')
+                contenedor.append(edadRecomendada)
+                edadRecomendada.text("Edad Recomendada" + dato.edad)
 
-				let estado = document.createElement('p')
-                contenedor.appendChild(estado)
-				console.log(dato.estado)
+				let estado = $('<p></p>')
+                contenedor.append(estado)
+				
 				if (dato.estado===true)
-                estado.textContent = "Completado: Sí" 
+                estado.text("Completado: Sí")   
 				else
-				estado.textContent = "Completado: No" 
+				estado.text("Completado: No" )
 
-				let tematica = document.createElement('p')
-                contenedor.appendChild(tematica)
-				console.log(dato.tematicas)
-				tematica.textContent= "Tematicas: " + dato.tematicas
+				let tematica = $('<p></p>')
+                contenedor.append(tematica)
+				
+				tematica.text("Tematicas: " + dato.tematicas)
                 
 
-                let botonVolver = document.createElement('button')
-                contenedor.appendChild(botonVolver)
-                botonVolver.textContent= "Volver"
-                botonVolver.onclick = this.volver.bind(this)
+                let botonVolver = $('<button></button>')
+                contenedor.append(botonVolver)
+                botonVolver.text("Volver") 
+                botonVolver.on('click',this.volver.bind(this))
 
     }
     /**
      * Borra los elementos generados en la vista consulta
      */
-    borrarIngresos(){
-		while (this.div.firstElementChild)
-		this.div.firstElementChild.remove()
-	}
+        borrarIngresos(){
+            while (this.div.children().length>0)
+            this.div.children().first().remove()
+        }
     /**
      * Vuelve a la vista inicio
      */

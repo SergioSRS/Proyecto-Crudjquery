@@ -16,25 +16,26 @@ export class VistaInicio extends Vista{
 
 		this.modelo.registrar(this.actualizar.bind(this))
 		//Elemento html
-		this.buscar = this.div.getElementsByTagName('svg')[0]
-		this.anadir = this.div.getElementsByTagName('svg')[1]
+		this.buscar = this.div.find('svg').eq(0)
+		this.anadir = this.div.find('svg').eq(1)
 		//Evento
-		this.anadir.onclick = this.pulsarAnadir.bind(this)
-		this.buscar.onclick = this.pulsarBuscar.bind(this)
+		this.anadir.on('click',this.pulsarAnadir.bind(this))
+		this.buscar.on('click',this.pulsarBuscar.bind(this)) 
 
 		//Menu opciones
-		this.buscarNombre = this.div.getElementsByTagName('input')[0]
+		this.buscarNombre = this.div.find('input').eq(0)
 	
 	
 
 		//Tabla
-		this.tabla = this.div.getElementsByTagName('tbody')[0]
+		this.tabla = this.div.find('tbody').eq(0)
+		
 	}
 	pulsarAnadir(){
 		this.controlador.pulsarAlta()
 	}
 	pulsarBuscar(){
-		this.controlador.pulsarBusqueda(this.buscarNombre.value)
+		this.controlador.pulsarBusqueda(this.buscarNombre.val())
 		this.actualizar()
 	}
 	/**
@@ -49,57 +50,60 @@ export class VistaInicio extends Vista{
 		{
 			for (let dato of datos){
 
-				let tr = document.createElement('tr')
-				this.tabla.appendChild(tr)
-				let td1 = document.createElement('td')
-				tr.appendChild(td1)
-				td1.textContent = dato.nombre
+				let tr = $("<tr></tr>")
+				
+				this.tabla.append(tr)
+				
+				let td1 = $("<td></td>")
+
+				tr.append(td1)
+				td1.text(dato.nombre)
 			
-				let td2 = document.createElement('td')
-				tr.appendChild(td2)
+				let td2 = $("<td></td>")
+				tr.append(td2)
 				if (dato.file){
 					
-					let img = document.createElement('img')
-					img.setAttribute('width', '96px')
-					img.setAttribute('height', '96px')
-					img.setAttribute('src', dato.file)
-					td2.appendChild(img)
+					let img = $("<img></img>")
+					img.width('96px')
+					img.height('96px')
+					img.attr('src', dato.file)
+					td2.append(img)
 				}
 				else{
-					td2.textContent=("Sin foto 😞")
+					td2.text("Sin foto 😞")
 				}
-				let td3 = document.createElement('td')
+				let td3 = $("<td></td>")
 			
-				tr.appendChild(td3)
-				let spanEliminar = document.createElement('span')
-				td3.appendChild(spanEliminar)
-				spanEliminar.classList.add('icono')
-				spanEliminar.textContent = '🗑'
-				spanEliminar.onclick = this.eliminar.bind(this, dato.id)
+				tr.append(td3)
+				let spanEliminar = $("<span></span>")
+				td3.append(spanEliminar)
+				spanEliminar.addClass('icono')
+				spanEliminar.text('🗑') 
+				spanEliminar.on('click', this.eliminar.bind(this, dato.id)) 
 				
 			
-				let spanConsultar = document.createElement('span')
-				td3.appendChild(spanConsultar)
-				spanConsultar.classList.add('icono')
-				spanConsultar.textContent = '🔎'
-				spanConsultar.onclick = this.consultar.bind(this, dato)
+				let spanConsultar = $("<span></span>")
+				td3.append(spanConsultar)
+				spanConsultar.addClass('icono')
+				spanConsultar.text('🔎')
+				spanConsultar.on('click',this.consultar.bind(this, dato))
 			
 			
-				let spanEditar = document.createElement('span')
-				td3.appendChild(spanEditar)
-				spanEditar.classList.add('icono')
-				spanEditar.textContent = '✏'
-				spanEditar.onclick = this.editar.bind(this, dato)
+				let spanEditar = $("<span></span>")
+				td3.append(spanEditar)
+				spanEditar.addClass('icono')
+				spanEditar.text('✏')
+				spanEditar.on('click',this.editar.bind(this, dato))
 				
 		}
 		if(datos.length==0)
 		{
-			let tr = document.createElement('tr')
-			this.tabla.appendChild(tr)
-			let td1 = document.createElement('td')
-			tr.appendChild(td1)
-			td1.textContent = "No hay registros"
-			td1.setAttribute("colspan", "3")
+			let tr = $("<tr></tr>")
+			this.tabla.append(tr)
+			let td1 = $("<td></td>")
+			tr.append(td1)
+			td1.text("No hay registros") 
+			td1.attr("colspan", "3")
 		}
 	
 	}
@@ -108,8 +112,8 @@ export class VistaInicio extends Vista{
 	 * Metodo para borrar los registros de la vista
 	 */
 	borrarIngresos(){
-		while (this.tabla.firstElementChild)
-		this.tabla.firstElementChild.remove()
+		while (this.tabla.children().length>0)
+		this.tabla.children().first().remove()
 	}
 	/** 
 	 * Metodo para consultar un registro 
