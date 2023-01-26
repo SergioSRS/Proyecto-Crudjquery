@@ -12,7 +12,11 @@ export class Modelo{
 		this.lista = []
 		this.callbacks = [] 
 		this.conexionBD()
+		this.aemet()
+		this.datosTiempo
+		
 	}
+	
 	/**
 	 * Registra a los callbacks en el array de callbacks
 	 * @param {array} callback callback para mantener actualizada las vistas
@@ -26,6 +30,31 @@ export class Modelo{
 	avisar(){
 		for(let callback of this.callbacks)
 		callback()
+	}
+	aemet(){
+
+		/**** Parte de AEMET ****/
+		let settings = {
+			"async": true,
+			"crossDomain": true,
+			"url": "https://opendata.aemet.es/opendata/api/prediccion/provincia/hoy/06/?api_key=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbnRvbmlvY2FybG9zbW9ydW5vZ29tZXouZ3VhZGFsdXBlQGFsdW1uYWRvLmZ1bmRhY2lvbmxveW9sYS5uZXQiLCJqdGkiOiI2YjEzOWY1OS0xYmYyLTQ2ZDItYWQwMS0yYTdkMTJlMTVjZWYiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTY3MDI2NTU4NywidXNlcklkIjoiNmIxMzlmNTktMWJmMi00NmQyLWFkMDEtMmE3ZDEyZTE1Y2VmIiwicm9sZSI6IiJ9.P8lK0K7lft9YT96TkgvU_ywD2TdxQ51MXqLAR8C-Uc4",
+			"method": "GET",
+			"headers": {
+			"cache-control": "no-cache"
+			}
+		}
+
+	
+		$.ajax(settings)
+		.done((response) => {
+			$.ajax(response.datos)
+				.done((response) => {
+					
+					this.datosTiempo = response
+					console.log(this.datosTiempo)
+					this.avisar()
+				})
+		})
 	}
 	/**
 	 * Metodo que te devuelve la lista de registros y avisa a los callbacks
@@ -220,5 +249,8 @@ export class Modelo{
  */
 	getDatos(){
 		return this.lista
+	}
+	getDatosTiempo(){
+		return this.datosTiempo;
 	}
 }

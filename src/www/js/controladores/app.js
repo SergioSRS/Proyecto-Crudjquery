@@ -11,6 +11,7 @@ import {Modelo} from '../modelos/modelo.js';
 
 class Controlador{
     constructor(){
+        //Si no tiene conexion cambiarlo
         $(window).on('load',this.iniciar.bind(this))
     }
     /**

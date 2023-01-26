@@ -15,6 +15,8 @@ export class VistaInicio extends Vista{
 		this.modelo = this.controlador.getModelo()
 
 		this.modelo.registrar(this.actualizar.bind(this))
+		this.modelo.registrar(this.footerAemet.bind(this))
+		
 		//Elemento html
 		this.buscar = this.div.find('svg').eq(0)
 		this.anadir = this.div.find('svg').eq(1)
@@ -25,8 +27,6 @@ export class VistaInicio extends Vista{
 		//Menu opciones
 		this.buscarNombre = this.div.find('input').eq(0)
 	
-	
-
 		//Tabla
 		this.tabla = this.div.find('tbody').eq(0)
 		
@@ -107,6 +107,18 @@ export class VistaInicio extends Vista{
 		}
 	
 	}
+	}
+	footerAemet(){
+		let datos = this.modelo.getDatosTiempo()
+		let divDatosAemet = $("<div></div>")
+
+		this.div.append(divDatosAemet)
+		divDatosAemet.css('white-space', 'pre-line')
+		divDatosAemet.css('text-align','center')
+		
+		divDatosAemet.text(datos)
+
+
 	}
 	/**
 	 * Metodo para borrar los registros de la vista
