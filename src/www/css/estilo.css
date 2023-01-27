@@ -9,7 +9,7 @@
     font-weight: normal;
 }
 @font-face{
-    font-family: '"Times New Roman';
+    font-family: 'Times New Roman';
     src: url('../assets/Flottflott.TTF') ;
     font-style: normal;
     font-weight: normal;
@@ -30,7 +30,7 @@ img{
     width: 100%;
 }
 
-div#cabecera{
+header#cabecera{
     display: flex;
     gap:20px;
 }
@@ -65,7 +65,7 @@ div#opciones > label > input{
     width:20%;
 }
 table{
-    font-family: '"Times New Roman';
+    font-family: 'Times New Roman';
     position:relative;
     margin:0 auto;
     width:30%;
@@ -85,7 +85,7 @@ table > tbody, #campos{
 }
 div.formulario{
     font-size:1.3rem;
-    font-family: '"Times New Roman';
+    font-family: 'Times New Roman';
     color:black;
    display:flex; 
    padding:10px;
@@ -102,12 +102,6 @@ div.formulario label, div.formulario div, div.formulario  input{
     font-family: 'Open Sans';
     text-align:center;
     margin:10px;
-}
-.cancelar{
-
-}
-.aceptar {
-
 }
 #contenedor{
     font-family: '"Times New Roman';
