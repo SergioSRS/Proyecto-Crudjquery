@@ -20,9 +20,10 @@ export class Vista{
 		@param ver {Boolean} True muestra la vista y false la oculta.
 	**/
 	mostrar(ver){
-		if (ver)
-			this.div.show(250)
+		if (ver){
+			this.div.show("fade","linear")
+			}
 		else
-			this.div.hide(250)
+			this.div.hide("fade","linear")
 	}
 }

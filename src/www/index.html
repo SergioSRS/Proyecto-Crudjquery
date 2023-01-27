@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link href= css/estilo.css rel="stylesheet" type="text/css"/>
     <title>Armario Gaming</title>
 </head>
@@ -15,7 +16,7 @@
         </header>
         <div id=vistaInicio>
             <div id="opciones">
-                <label>Nombre<input role="search" tabindex="1" placeholder="nombre" id="nombre" type="text"></label>
+                <label>Nombre<input role="search" tabindex="1" title="Introduce un nombre para buscar" placeholder="nombre" id="nombre" type="text"></label>
                 <svg role="button" aria-pressed="false" tabindex="2" id="buscar" height="48" width="48"><path d="M39.8 41.95 26.65 28.8q-1.5 1.3-3.5 2.025-2 .725-4.25.725-5.4 0-9.15-3.75T6 18.75q0-5.3 3.75-9.05 3.75-3.75 9.1-3.75 5.3 0 9.025 3.75 3.725 3.75 3.725 9.05 0 2.15-.7 4.15-.7 2-2.1 3.75L42 39.75Zm-20.95-13.4q4.05 0 6.9-2.875Q28.6 22.8 28.6 18.75t-2.85-6.925Q22.9 8.95 18.85 8.95q-4.1 0-6.975 2.875T9 18.75q0 4.05 2.875 6.925t6.975 2.875Z"/></svg>
                 <svg role="button" aria-pressed="false" tabindex="3" id="anadir" height="48" width="48"><path d="M22.65 34h3v-8.3H34v-3h-8.35V14h-3v8.7H14v3h8.65ZM24 44q-4.1 0-7.75-1.575-3.65-1.575-6.375-4.3-2.725-2.725-4.3-6.375Q4 28.1 4 23.95q0-4.1 1.575-7.75 1.575-3.65 4.3-6.35 2.725-2.7 6.375-4.275Q19.9 4 24.05 4q4.1 0 7.75 1.575 3.65 1.575 6.35 4.275 2.7 2.7 4.275 6.35Q44 19.85 44 24q0 4.1-1.575 7.75-1.575 3.65-4.275 6.375t-6.35 4.3Q28.15 44 24 44Zm.05-3q7.05 0 12-4.975T41 23.95q0-7.05-4.95-12T24 7q-7.05 0-12.025 4.95Q7 16.9 7 24q0 7.05 4.975 12.025Q16.95 41 24.05 41ZM24 24Z"/></svg></a>
              </div>
@@ -31,15 +32,20 @@
                 <tbody>
                 </tbody>
             </table>   
+            <div aria-draggable role="alertdialog" id="dialogo" title="Instrucciones">
+                <p>
+                    Hola querido usuario!, esta aplicación sirver para almacenar tus juegos y revisar sus datos posteriormente
+                </p>
+            </div>
          </div>
          <div id="vistaAlta"> 
             <h2 class="tituloProceso">Alta de juegos</h2>
             <div role="form" aria-label="Alta de videojuego" class="formulario">
-                <label>Nombre<input  type="text"/></label>
-                <label>Precio<input  type="text"/></label>
-                <label>Fecha lanzamiento<input  type="date"/></label>
-                <label>Descripción<input  type="text"/></label>
-                <label>Edad Recomendada<select >
+                <label>Nombre<input title="Introduce nombre del juego" type="text"/></label>
+                <label>Precio<input title ="Introduce precio del juego" type="text"/></label>
+                <label>Fecha lanzamiento<input title="Fecha de lanzamiento" type="date"/></label>
+                <label>Descripción<input title="Introduce la descripción de tu juego" type="text"/></label>
+                <label>Edad Recomendada<select title="Edad recomandada del juego">
                         <option value="+18">+18</option>
                         <option value="+16">+16</option>
                         <option value="+13">+13</option>
@@ -97,10 +103,13 @@
         <div role="complementary" aria-label="Consulta del registro en detalle" id="vistaConsulta">
 
         </div>
+        
         <script
         src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
         crossorigin="anonymous"></script>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
         <script type="module" src="js/controladores/app.js"></script>
     </body>
 </html>

@@ -11,14 +11,18 @@ export class VistaAlta extends Vista{
 
 		/*Valores para hacer un alta*/
 		this.iNombre = this.div.find('input').eq(0)
+		this.iNombre.tooltip()
 		
 		this.iPrecio = this.div.find('input').eq(1)
+		this.iPrecio.tooltip()
 		this.iFecha = this.div.find('input').eq(2)
+		this.iFecha.tooltip()
 		this.iDescripcion = this.div.find('input').eq(3)
+		this.iDescripcion.tooltip()
 		this.iEdad = this.div.find('select').eq(0)
+		this.iEdad.tooltip()
 		this.iFile= this.div.find('input').eq(4)	
-	
-
+		this.iFile.tooltip()
 		this.iTematicas = this.div.find('.tematica')
 
 		this.iEstado = this.div.find('.estado')

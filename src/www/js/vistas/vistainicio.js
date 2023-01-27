@@ -29,14 +29,34 @@ export class VistaInicio extends Vista{
 	
 		//Tabla
 		this.tabla = this.div.find('tbody').eq(0)
+		
 
 		//Aemet
 		this.divDatosAemet = $("<div></div>")
+		
 
 		//Para generar tabindex
 		this.i=0;
+
+		//Dialog
+		this.dialogo = this.div.find('#dialogo')
+		this.dialogo.dialog()
+		
+		this.autocompletar()
+		
 		
 	}
+	autocompletar() {
+			var availableTags = [
+				"Fifa",
+				"Elden Ring",
+				"League of Legends",
+				"Zelda"
+			];
+			this.buscarNombre .autocomplete({
+		  source: availableTags
+		})
+	  } 
 	pulsarAnadir(){
 		this.controlador.pulsarAlta()
 	}
