@@ -1,5 +1,4 @@
 /**
-/**
 	@file Contiene la vista consulta de la aplicacion
 	@author Sergio Rivera
 	@license GPL-3.0-or-later

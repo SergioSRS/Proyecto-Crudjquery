@@ -40,11 +40,47 @@ export class VistaInicio extends Vista{
 
 		//Dialog
 		this.dialogo = this.div.find('#dialogo')
-		this.dialogo.dialog()
+		this.dialogo.css("display","none")
+		if(!document.cookie)
+		{
+			this.dialogo.css("display","block")
+			this.dialogo.dialog({
+				dialogClass: "no-close",
+				closeOnEscape: false,
+				modal: true,
+				width: 1000,
+				title:"Aceptar Cookies",
+				buttons: {
+				  Aceptar: function() {
+					$( this ).dialog( "close" );
+					document.cookie="visitas=1;"
+					document.cookie="aceptada=true;"
+					document.cookie="idproceso=null;"
+				  }
+				}
+			  })
+		}
 		
+			// incrementar el valor del cookie
+		this.anadirVisitas()
 		this.autocompletar()
-		
-		
+
+	}
+	anadirVisitas(){
+		let cookies = document.cookie.split(";");
+		for (var i = 0; i < cookies.length; i++) {
+		  let cookie = cookies[i];
+		  let eqPos = cookie.indexOf("=");
+		  let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+		  name = name.replace(/^\s+|\s+$/g, "");
+		  if (name == "visitas") {
+			let value = eqPos > -1 ? cookie.substr(eqPos + 1) : "";
+			value = value.replace(/^\s+|\s+$/g, "");
+			let visitas = parseInt(value) + 1;
+			document.cookie = "visitas=" + visitas;
+			break;
+		  }
+		}
 	}
 	autocompletar() {
 			var availableTags = [
@@ -59,6 +95,9 @@ export class VistaInicio extends Vista{
 	  } 
 	pulsarAnadir(){
 		this.controlador.pulsarAlta()
+		
+		
+	
 	}
 	pulsarBuscar(){
 		this.controlador.pulsarBusqueda(this.buscarNombre.val())
@@ -75,7 +114,7 @@ export class VistaInicio extends Vista{
 		if(datos != null)
 		{
 			for (let dato of datos){
-				console.log(this.i)
+				
 				let tr = $("<tr></tr>")
 				
 				this.tabla.append(tr)
@@ -133,7 +172,7 @@ export class VistaInicio extends Vista{
 				spanEditar.css('cursor','pointer')
 				spanEditar.on('click',this.editar.bind(this, dato))
 				this.i++;
-				
+				document.cookie="idproceso="+dato.id
 		}
 		if(datos.length==0)
 		{

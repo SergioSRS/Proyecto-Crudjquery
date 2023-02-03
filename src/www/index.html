@@ -9,10 +9,11 @@
 </head>
     <body>
         <header id="cabecera">
-            <div tabdindex="0" id="logo">
-                <a role="button" href="index.html"><img alt ="logo" src="assets/logodeneoncirculo.png"></a>
+            <div role="button" aria-pressed="false" tabdindex="0" id="logo">
+                <img alt ="logo" src="assets/logodeneoncirculo.png">
             </div>
             <h1 id="titulo">Armario Gaming</h1>
+            <div id="avisolegal" role="button" aria-pressed="false">Aviso Legal</div>
         </header>
         <div id=vistaInicio>
             <div id="opciones">
@@ -34,10 +35,13 @@
             </table>   
             <div aria-draggable role="alertdialog" id="dialogo" title="Instrucciones">
                 <p>
-                    Hola querido usuario!, esta aplicación sirver para almacenar tus juegos y revisar sus datos posteriormente
+                    Al aceptar este texto, se instalarán cookies en su equipo para realizar estadísticas que solo serán usadas
+                    por el dueño de la aplicación.<br/><br/>
+                    Si acepta se entenderá que permite el uso de cookies.
                 </p>
             </div>
          </div>
+         <div id="vistaLegal"></div>
          <div id="vistaAlta"> 
             <h2 class="tituloProceso">Alta de juegos</h2>
             <div role="form" aria-label="Alta de videojuego" class="formulario">
@@ -103,7 +107,6 @@
         <div role="complementary" aria-label="Consulta del registro en detalle" id="vistaConsulta">
 
         </div>
-        
         <script
         src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="

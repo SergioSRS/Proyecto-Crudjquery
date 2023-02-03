@@ -6,6 +6,8 @@
 import {VistaModificar} from '../vistas/vistamodificar.js'
 import {VistaInicio} from '../vistas/vistainicio.js'
 import {VistaAlta} from '../vistas/vistaalta.js'
+import {VistaLegal} from '../vistas/vistalegal.js'
+import {Cabecera} from '../vistas/cabecera.js'
 import {VistaConsulta} from '../vistas/vistaconsulta.js'
 import {Modelo} from '../modelos/modelo.js';
 
@@ -26,11 +28,15 @@ class Controlador{
         this.divVistaAlta = $('#vistaAlta')
         this.divVistaConsulta= $('#vistaConsulta')
         this.divVistaModificar = $('#vistaModificar')
+        this.divVistaLegal = $('#vistaLegal')
+        this.cabecera = $('#cabecera')
 
         this.vistaInicio = new VistaInicio(this.divVistaInicio, this);
+        this.vistaLegal = new VistaLegal(this.divVistaLegal,this);
         this.vistaAlta = new VistaAlta(this.divVistaAlta, this)
         this.vistaConsulta = new VistaConsulta(this.divVistaConsulta, this)
         this.vistaModificar = new VistaModificar(this.divVistaModificar, this)
+        this.cabecera = new Cabecera(this.cabecera, this)
         this.ocultarVistas()
         this.vistaInicio.mostrar(true)
     }
@@ -39,6 +45,7 @@ class Controlador{
      */
     ocultarVistas(){
         this.vistaInicio.mostrar(false)
+        this.vistaLegal.mostrar(false)
         this.vistaAlta.mostrar(false)
         this.vistaModificar.mostrar(false)
         this.vistaConsulta.mostrar(false)
@@ -51,6 +58,11 @@ class Controlador{
         this.ocultarVistas()
         this.vistaInicio.mostrar(true)
     }
+    pulsarAvisoLegal(){
+        this.ocultarVistas()
+        this.vistaLegal.mostrar(true)
+        this.vistaLegal.pintar()
+    }
     /**
      * Oculta las vistas y muestra la vista de consultas de un dato en concreto
      */
@@ -58,8 +70,6 @@ class Controlador{
         this.ocultarVistas();
         this.vistaConsulta.mostrar(true)
         this.vistaConsulta.pintar(dato)
-      
-      
     }
      /**  
      * metodo que llama al modelo para editar los datos que se encuentran en el
